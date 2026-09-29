@@ -1,0 +1,50 @@
+/* Tokens, app shell, cards, forms, buttons, alerts, and the KSP logo come
+   from @kieranrsmith0713-crypto/hub-foundations (imported in main.tsx).
+   hub-foundations 1.1.6+ ships the v3 orange palette itself, so unlike the
+   older apps there's no :root token override here — this file is only
+   Krav Maga's own feature styles, reading colour through var(--...). */
+
+.greeting {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Tighter vertical rhythm for form cards than .stack's 1.25rem. */
+.stack-sm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.stack-sm h2 { margin: 0; }
+
+/* Side-by-side short fields (date / minutes / type…): two across on a
+   phone, as many as fit on a tablet. */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.6rem;
+}
+
+/* Class notes under a history row — wrap, unlike .item-title. */
+.item-notes {
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  margin-top: 0.2rem;
+}
+
+/* Proficiency / result select + delete button on the right of a row.
+   Overrides .row select's 160px flex-basis, which is too wide here. */
+.technique-actions {
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.technique-actions select {
+  flex: 0 1 auto;
+  width: auto;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.85rem;
+}
+
+.next-grading { margin: 0; }
