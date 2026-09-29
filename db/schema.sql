@@ -62,9 +62,22 @@ create table if not exists public.krav_techniques (
   -- Self-assessed, 1 (just introduced) to 5 (second nature).
   proficiency smallint not null default 1 check (proficiency between 1 and 5),
   notes       text not null default '',
+  -- Ordered breakdown of the technique: [{ "text": "...", "tip": "..." }].
+  -- `tip` is an optional key point for that step. Stored inline because
+  -- steps only ever make sense as part of their technique and are always
+  -- edited and saved as a whole list.
+  steps       jsonb not null default '[]'::jsonb,
+  -- When you learnt it (optional).
+  learned_on  date,
   created_at  timestamptz not null default now(),
   updated_at  timestamptz not null default now()
 );
+
+-- Added after the first release — keeps re-running this file safe on a
+-- database created from the earlier version.
+alter table public.krav_techniques
+  add column if not exists steps jsonb not null default '[]'::jsonb,
+  add column if not exists learned_on date;
 
 create index if not exists krav_techniques_user_name_idx
   on public.krav_techniques (user_id, name);

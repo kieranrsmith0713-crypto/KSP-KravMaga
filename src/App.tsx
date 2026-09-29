@@ -6,6 +6,7 @@ import { Layout } from './components/Layout'
 import { Dashboard } from './pages/Dashboard'
 import { Classes } from './pages/Classes'
 import { Techniques } from './pages/Techniques'
+import { TechniqueDetail } from './pages/TechniqueDetail'
 import { Gradings } from './pages/Gradings'
 import { ConfirmProvider } from './components/confirm/ConfirmProvider'
 
@@ -84,6 +85,7 @@ export default function App() {
             <Route path="/" element={<Dashboard />} />
             <Route path="/classes" element={<Classes />} />
             <Route path="/techniques" element={<Techniques />} />
+            <Route path="/techniques/:id" element={<TechniqueDetail />} />
             <Route path="/gradings" element={<Gradings />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>

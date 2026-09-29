@@ -7,6 +7,13 @@
  *   npx supabase gen types typescript --project-id <ref> > src/types/database.ts
  */
 
+/** One step in a technique's breakdown, stored in `krav_techniques.steps`. */
+export interface TechniqueStep {
+  text: string
+  /** Optional key point for this step, e.g. "keep your chin tucked". */
+  tip: string
+}
+
 export interface Database {
   public: {
     Tables: {
@@ -52,6 +59,8 @@ export interface Database {
           level: string
           proficiency: number
           notes: string
+          steps: TechniqueStep[]
+          learned_on: string | null
           created_at: string
           updated_at: string
         }
@@ -63,6 +72,8 @@ export interface Database {
           level?: string
           proficiency?: number
           notes?: string
+          steps?: TechniqueStep[]
+          learned_on?: string | null
           created_at?: string
           updated_at?: string
         }
@@ -74,6 +85,8 @@ export interface Database {
           level?: string
           proficiency?: number
           notes?: string
+          steps?: TechniqueStep[]
+          learned_on?: string | null
           created_at?: string
           updated_at?: string
         }

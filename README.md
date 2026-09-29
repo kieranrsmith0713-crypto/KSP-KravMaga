@@ -13,8 +13,11 @@ installable as a **PWA**.
   confidence bar, and recent classes
 - **Classes** — log a class (date, minutes, type, intensity 1–5, notes) and
   browse your history
-- **Techniques** — build your syllabus by category and level, and rate each
-  one from "Introduced" to "Second nature"
+- **Techniques** — your notebook of what you've learnt: search, filter by
+  category (pick a suggested one or type your own), grouped by category
+- **Technique page** — a numbered step-by-step breakdown with an optional
+  key point per step, notes, level, the date you learnt it, and a rating from
+  "Introduced" to "Second nature"; edit, reorder, add, and remove steps
 - **Gradings** — upcoming dates and past results
 - Delete with the shared confirm-dialog pattern
 - Installable PWA (offline shell, home-screen icon, standalone display)
@@ -138,7 +141,7 @@ src/
     techniques.ts            Technique queries, categories, proficiency labels
     gradings.ts              Grading queries + current level / next grading
     date.ts                  Local-date helpers (YYYY-MM-DD columns, durations)
-  pages/                     Dashboard, Classes, Techniques, Gradings
+  pages/                     Dashboard, Classes, Techniques, TechniqueDetail, Gradings
   styles/kravmaga.css        App-specific styles (shared ones come from hub-foundations)
   types/database.ts          Typed schema for the client
   App.tsx                    Hub SSO gate (loading / redirect / access check) + routes

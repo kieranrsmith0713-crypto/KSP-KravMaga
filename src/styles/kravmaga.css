@@ -48,3 +48,144 @@
 }
 
 .next-grading { margin: 0; }
+
+/* Page title with an action button on the right. */
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+.form-actions .spacer { flex: 1 1 auto; }
+
+.back-link {
+  align-self: flex-start;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-decoration: none;
+}
+.back-link:hover { color: var(--text); }
+
+/* ---------- Technique list ---------- */
+/* The whole row is a link through to the technique. */
+.technique-link {
+  flex-wrap: nowrap;
+  color: inherit;
+  text-decoration: none;
+}
+.item-list li:last-child .technique-link { border-bottom: none; }
+.technique-link:hover .item-title { color: var(--primary); }
+
+.chevron {
+  flex: 0 0 auto;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--muted);
+}
+
+/* ---------- Technique detail ---------- */
+.technique-meta {
+  margin: 0.25rem 0 0;
+  font-size: 0.9rem;
+}
+
+.proficiency-field select { max-width: 16rem; }
+
+.step-list,
+.step-editor {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.step {
+  display: flex;
+  gap: 0.85rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.step:first-child { padding-top: 0; }
+.step:last-child { border-bottom: none; padding-bottom: 0; }
+
+.step-number {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--text);
+  background: var(--surface-2);
+  border-radius: 999px;
+}
+
+.step-body {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-top: 0.2rem;
+}
+
+.step-text {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.step-tip {
+  margin: 0.35rem 0 0;
+  padding-left: 0.65rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  border-left: 2px solid var(--primary);
+}
+
+.notes-text {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+/* ---------- Step editor ---------- */
+.step-editor { gap: 1rem; }
+
+.step-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.step-edit-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.step-edit-tools {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.icon-btn {
+  width: 2rem;
+  height: 2rem;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--muted);
+  background: var(--surface-2);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.icon-btn:hover:not(:disabled) { color: var(--text); }
+.icon-btn:disabled { opacity: 0.35; cursor: default; }
