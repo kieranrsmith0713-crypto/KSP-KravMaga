@@ -67,6 +67,9 @@
 
 .back-link {
   align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--muted);
@@ -82,12 +85,11 @@
   text-decoration: none;
 }
 .item-list li:last-child .technique-link { border-bottom: none; }
-.technique-link:hover .item-title { color: var(--primary); }
+.technique-link:hover .chevron { color: var(--text); }
 
 .chevron {
   flex: 0 0 auto;
-  font-size: 1.4rem;
-  line-height: 1;
+  display: flex;
   color: var(--muted);
 }
 
@@ -147,7 +149,7 @@
   padding-left: 0.65rem;
   font-size: 0.85rem;
   color: var(--muted);
-  border-left: 2px solid var(--primary);
+  border-left: 2px solid var(--border);
 }
 
 .notes-text {
@@ -177,6 +179,8 @@
 }
 
 .icon-btn {
+  display: grid;
+  place-items: center;
   width: 2rem;
   height: 2rem;
   font: inherit;
@@ -189,3 +193,10 @@
 }
 .icon-btn:hover:not(:disabled) { color: var(--text); }
 .icon-btn:disabled { opacity: 0.35; cursor: default; }
+
+/* Deleting is rare — keep it a quiet text link, not a red block. */
+.delete-link {
+  color: var(--muted);
+  font-weight: 600;
+}
+.delete-link:hover { color: var(--negative); }

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { FormEvent } from 'react'
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { useConfirm } from '../components/confirm/useConfirm'
+import { Icon } from '../components/Icon'
 import {
   PROFICIENCY_LABELS,
   allCategories,
@@ -182,7 +183,7 @@ export function TechniqueDetail() {
     return (
       <form className="stack" onSubmit={handleSave}>
         <Link to="/techniques" className="back-link">
-          ‹ Techniques
+          <Icon name="left" size={16} /> Techniques
         </Link>
         {error && <p className="alert error">{error}</p>}
 
@@ -232,7 +233,7 @@ export function TechniqueDetail() {
                       disabled={index === 0}
                       onClick={() => moveStep(index, -1)}
                     >
-                      ↑
+                      <Icon name="up" />
                     </button>
                     <button
                       type="button"
@@ -241,10 +242,10 @@ export function TechniqueDetail() {
                       disabled={index === draft.steps.length - 1}
                       onClick={() => moveStep(index, 1)}
                     >
-                      ↓
+                      <Icon name="down" />
                     </button>
                     <button type="button" className="icon-btn" aria-label="Remove step" onClick={() => removeStep(step.key)}>
-                      ✕
+                      <Icon name="close" />
                     </button>
                   </div>
                 </div>
@@ -287,8 +288,8 @@ export function TechniqueDetail() {
         </div>
 
         <div className="form-actions">
-          <button type="button" className="btn danger" onClick={handleDelete}>
-            Delete
+          <button type="button" className="btn link delete-link" onClick={handleDelete}>
+            Delete technique
           </button>
           <span className="spacer" />
           <button type="button" className="btn" onClick={() => setDraft(null)}>
@@ -306,7 +307,7 @@ export function TechniqueDetail() {
   return (
     <section className="stack">
       <Link to="/techniques" className="back-link">
-        ‹ Techniques
+        <Icon name="left" size={16} /> Techniques
       </Link>
       {error && <p className="alert error">{error}</p>}
 

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import type { FormEvent } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../auth/useAuth'
+import { Icon } from '../components/Icon'
 import { PROFICIENCY_LABELS, allCategories, createTechnique, fetchTechniques } from '../lib/techniques'
 import type { Technique } from '../types/database'
 
@@ -80,7 +81,7 @@ export function Techniques() {
       <div className="page-header">
         <h1 className="greeting">Techniques</h1>
         {!adding && (
-          <button type="button" className="btn small primary" onClick={() => setAdding(true)}>
+          <button type="button" className="btn small" onClick={() => setAdding(true)}>
             Add technique
           </button>
         )}
@@ -183,8 +184,8 @@ export function Techniques() {
                         · {PROFICIENCY_LABELS[t.proficiency]}
                       </span>
                     </div>
-                    <span className="chevron" aria-hidden>
-                      ›
+                    <span className="chevron">
+                      <Icon name="right" />
                     </span>
                   </Link>
                 </li>
