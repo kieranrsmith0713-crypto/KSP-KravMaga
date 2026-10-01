@@ -10,6 +10,7 @@ export const TECHNIQUE_CATEGORIES = [
   'Kicks',
   'Defences',
   'Releases',
+  'Chokes',
   'Groundwork',
   'Weapons',
   'Other',
