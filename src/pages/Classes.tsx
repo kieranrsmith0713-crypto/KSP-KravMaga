@@ -75,7 +75,10 @@ export function Classes() {
 
   return (
     <section className="stack">
-      <h1 className="greeting">Classes</h1>
+      <div className="page-head-text">
+        <p className="eyebrow accent">Training log</p>
+        <h1 className="greeting">Classes</h1>
+      </div>
       {error && <p className="alert error">{error}</p>}
 
       <form className="card stack-sm" onSubmit={handleAdd}>

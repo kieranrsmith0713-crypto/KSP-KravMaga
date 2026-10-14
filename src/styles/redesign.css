@@ -1,0 +1,519 @@
+/* ==========================================================================
+   KSP redesign — shared base. Same palette, type and shell as the KSP
+   Workout redesign (Figma "KSP Workout"): charcoal surfaces, one orange
+   accent, Inter + IBM Plex Mono, a left sidebar + utility bar on desktop
+   (960px and up) and the existing header / drawer / bottom nav on mobile.
+   Loaded last so it can re-theme the hub-foundations var(--...) tokens
+   every shared class already reads. App-specific rules sit at the end.
+   ========================================================================== */
+
+:root {
+  --bg: #141517;
+  --sidebar: #101113;
+  --surface: #1d1f22;
+  --surface-2: #25272a;
+  --surface-3: #2c2e32;
+  --border: #34363a;
+  --text: #f3f1ec;
+  --muted: #a3a5a9;
+  --faint: #71757b;
+  --primary: #ff6b35;
+  --primary-hover: #ff8456;
+  --primary-tint: #30221d;
+  --on-primary: #171513;
+  --positive: #4a9b8e;
+  --negative: #dc3b3b;
+  --radius: 6px;
+  --radius-lg: 10px;
+
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --sidebar-w: 216px;
+
+  font-family: var(--font-sans);
+}
+
+body {
+  background: var(--bg);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+/* ---------- Shared building blocks ---------- */
+
+.eyebrow,
+.sidebar-section-label,
+.stat-tile .stat-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.eyebrow {
+  margin: 0;
+}
+.eyebrow.accent {
+  color: var(--primary);
+}
+
+.page-head {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+/* Title block inside a page's own header row (eyebrow over the title). */
+.page-head-text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.dash-header-row {
+  align-items: flex-end;
+}
+
+/* A per-route heading rendered by Layout sits above the page's own .stack. */
+.app-main > .page-head {
+  margin-bottom: 24px;
+}
+.page-title {
+  margin: 0;
+  font-size: clamp(30px, 4.2vw, 44px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.card {
+  border-color: transparent;
+  border-radius: var(--radius-lg);
+}
+.card h2 {
+  font-weight: 600;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+.btn:hover:not(:disabled) {
+  background: var(--surface-3);
+  border-color: var(--faint);
+}
+.btn.small {
+  min-height: 32px;
+  padding: 0 10px;
+  font-size: 12px;
+}
+.btn.primary {
+  color: var(--on-primary);
+  background: var(--primary);
+  border-color: var(--primary);
+}
+.btn.primary:hover:not(:disabled) {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+.btn.link,
+.btn.link-btn {
+  min-height: 0;
+  background: none;
+  border: none;
+}
+.btn.link {
+  color: var(--primary);
+}
+.btn.danger {
+  color: var(--negative);
+  background: transparent;
+  border-color: var(--border);
+}
+.btn.danger:hover:not(:disabled) {
+  background: rgba(220, 59, 59, 0.12);
+}
+.btn-icon {
+  gap: 6px;
+}
+
+input,
+select,
+textarea {
+  border-radius: var(--radius);
+}
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.18);
+}
+
+.pill {
+  min-height: 36px;
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.pill.active {
+  color: var(--on-primary);
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.alert,
+.icon-btn {
+  border-radius: var(--radius);
+}
+
+.stat-tile {
+  gap: 10px;
+  padding: 16px;
+  background: var(--surface);
+  border-color: transparent;
+  border-radius: var(--radius-lg);
+}
+.stat-tile .stat-value {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 20px;
+  color: var(--text);
+  white-space: nowrap;
+}
+@media (max-width: 639px) {
+  .stat-tile {
+    padding: 12px 10px;
+  }
+  .stat-tile .stat-value {
+    font-size: 14px;
+  }
+}
+
+/* ---------- App shell ---------- */
+
+.app-workspace {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.app-sidebar,
+.utility-bar {
+  display: none;
+}
+
+.logo-link {
+  text-decoration: none;
+}
+
+.sidebar-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-left: 12px;
+}
+.sidebar-wordmark {
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+.sidebar-tagline {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--primary);
+}
+
+.sidebar-nav,
+.drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.drawer-group-label,
+.sidebar-group-label {
+  margin-top: 16px;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 44px;
+  padding: 0 12px;
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+  border-radius: var(--radius);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.sidebar-link svg {
+  flex: 0 0 auto;
+}
+.sidebar-link:hover {
+  color: var(--text);
+  background: var(--surface);
+}
+.sidebar-link.active {
+  color: var(--primary);
+  background: var(--primary-tint);
+}
+
+.sidebar-account {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: auto;
+}
+.sidebar-divider {
+  height: 1px;
+  background: var(--border);
+}
+.sidebar-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.sidebar-avatar {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  background: var(--surface-2);
+  border-radius: 999px;
+}
+.sidebar-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.sidebar-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sidebar-signout {
+  align-self: flex-start;
+  padding: 0;
+  font: inherit;
+  font-size: 11px;
+  color: var(--muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.sidebar-signout:hover {
+  color: var(--text);
+}
+.sidebar-signout-icon {
+  display: flex;
+  margin-left: auto;
+  padding: 0;
+  color: var(--muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.sidebar-signout-icon:hover {
+  color: var(--text);
+}
+
+.utility-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--faint);
+}
+.utility-breadcrumb-current {
+  color: var(--text);
+}
+.utility-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-width: 0;
+}
+.utility-email {
+  min-width: 0;
+  font-size: 11px;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.utility-separator {
+  flex: 0 0 auto;
+  width: 1px;
+  height: 16px;
+  background: var(--border);
+}
+.utility-date {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* Mobile/tablet chrome */
+.app-topbar {
+  background: rgba(16, 17, 19, 0.92);
+}
+.app-header {
+  padding-bottom: 0.9rem;
+}
+.app-nav,
+.header-right {
+  display: none;
+}
+.drawer-toggle {
+  display: flex;
+  color: var(--text);
+}
+.drawer-toggle:hover {
+  background: var(--surface);
+}
+.ksp-logo-compact .ksp-logo-mark {
+  font-weight: 900;
+  color: var(--text);
+}
+.ksp-logo-compact .ksp-logo-tagline {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.drawer-panel {
+  background: var(--sidebar);
+}
+.drawer-header {
+  padding: 1.5rem 1.25rem 0.75rem;
+  padding-top: max(1.5rem, env(safe-area-inset-top));
+  border-bottom: none;
+}
+.drawer-header .sidebar-brand {
+  padding-left: 0;
+}
+.drawer-links {
+  padding: 0.5rem 1.25rem;
+}
+.drawer-footer {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  padding: 1rem 1.25rem;
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+@media (max-width: 639px) {
+  .bottom-nav {
+    background: var(--sidebar);
+  }
+  .bottom-nav-link {
+    font-weight: 500;
+  }
+}
+
+@media (min-width: 960px) {
+  .app-shell {
+    flex-direction: row;
+  }
+
+  .app-sidebar {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex: 0 0 var(--sidebar-w);
+    flex-direction: column;
+    gap: 36px;
+    width: var(--sidebar-w);
+    height: 100vh;
+    padding: 32px 20px 24px;
+    overflow-y: auto;
+    background: var(--sidebar);
+    border-right: 1px solid var(--border);
+  }
+  .app-sidebar .sidebar-nav + .sidebar-nav {
+    margin-top: -12px;
+  }
+
+  .app-topbar {
+    display: none;
+  }
+
+  .utility-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    height: 72px;
+    padding: 0 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .app-main {
+    max-width: 900px;
+    margin: 0;
+    padding: 36px 40px 32px;
+  }
+}
+
+/* ==========================================================================
+   Krav Maga-specific
+   ========================================================================== */
+
+/* Page titles are h1.greeting here — the redesign's display heading. */
+.greeting {
+  margin: 0;
+  font-size: clamp(30px, 4.2vw, 44px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.page-header {
+  align-items: flex-end;
+}

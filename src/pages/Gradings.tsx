@@ -91,7 +91,10 @@ export function Gradings() {
 
   return (
     <section className="stack">
-      <h1 className="greeting">Gradings</h1>
+      <div className="page-head-text">
+        <p className="eyebrow accent">Belt progress</p>
+        <h1 className="greeting">Gradings</h1>
+      </div>
       {error && <p className="alert error">{error}</p>}
 
       <form className="card stack-sm" onSubmit={handleAdd}>

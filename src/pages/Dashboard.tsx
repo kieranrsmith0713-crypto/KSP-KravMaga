@@ -34,7 +34,10 @@ export function Dashboard() {
 
   return (
     <section className="stack">
-      <h1 className="greeting">Krav Maga</h1>
+      <div className="page-head-text">
+        <p className="eyebrow accent">Your training, at a glance</p>
+        <h1 className="greeting">Krav Maga</h1>
+      </div>
       {error && <p className="alert error">{error}</p>}
 
       <div className="stat-tiles">

@@ -79,7 +79,10 @@ export function Techniques() {
   return (
     <section className="stack">
       <div className="page-header">
-        <h1 className="greeting">Techniques</h1>
+        <div className="page-head-text">
+          <p className="eyebrow accent">The syllabus</p>
+          <h1 className="greeting">Techniques</h1>
+        </div>
         {!adding && (
           <button type="button" className="btn small" onClick={() => setAdding(true)}>
             Add technique
