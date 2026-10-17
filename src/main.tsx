@@ -14,6 +14,7 @@ import App from './App'
 import '@kieranrsmith0713-crypto/hub-foundations/css'
 import './styles/kravmaga.css'
 import './styles/redesign.css'
+import './styles/ksp-mark.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

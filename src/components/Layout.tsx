@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { useAuth } from '../auth/useAuth'
 import { KSPLogo } from './KSPLogo'
+import { KspLockup } from './KspMark'
 import { CalendarIcon, ChevronRightIcon, HomeIcon, LogOutIcon, MenuIcon, TargetIcon, TrophyIcon, XIcon } from './icons'
 
 // Sidebar (desktop, 960px and up) and drawer (mobile) navigation.
@@ -44,8 +45,7 @@ function localIsoDate(): string {
 function BrandMark() {
   return (
     <span className="sidebar-brand">
-      <span className="sidebar-wordmark">KSP</span>
-      <span className="sidebar-tagline">KRAV MAGA / TRAINING</span>
+      <KspLockup variant="sidebar" />
     </span>
   )
 }
