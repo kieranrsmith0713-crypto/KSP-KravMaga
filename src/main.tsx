@@ -11,10 +11,15 @@ import '@fontsource/inter/latin-900.css'
 import '@fontsource/ibm-plex-mono/latin-400.css'
 import { AuthProvider } from './auth/AuthProvider'
 import App from './App'
+import { applyTheme, readStoredTheme } from './lib/theme'
 import '@kieranrsmith0713-crypto/hub-foundations/css'
 import './styles/kravmaga.css'
 import './styles/redesign.css'
 import './styles/ksp-mark.css'
+
+// Apply the last Appearance used on this device before first paint; the
+// account's saved setting is pulled in once signed in (see App).
+applyTheme(readStoredTheme())
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

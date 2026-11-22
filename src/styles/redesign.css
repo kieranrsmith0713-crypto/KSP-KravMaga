@@ -1,32 +1,21 @@
 /* ==========================================================================
-   KSP redesign — shared base. Same palette, type and shell as the KSP
-   Workout redesign (Figma "KSP Workout"): charcoal surfaces, one orange
-   accent, Inter + IBM Plex Mono, a left sidebar + utility bar on desktop
-   (960px and up) and the existing header / drawer / bottom nav on mobile.
-   Loaded last so it can re-theme the hub-foundations var(--...) tokens
-   every shared class already reads. App-specific rules sit at the end.
+   KSP redesign — shared base. Shell from the KSP Workout redesign (Figma
+   "KSP Workout"): a left sidebar + utility bar on desktop (960px and up)
+   and the existing header / drawer / bottom nav on mobile. Colours come
+   from the Soft Daylight tokens in hub-foundations 2.0 (light by default,
+   dark on request or by device); type is Nunito + IBM Plex Mono.
+   App-specific rules sit at the end.
    ========================================================================== */
 
 :root {
-  --bg: #141517;
-  --sidebar: #101113;
-  --surface: #1d1f22;
-  --surface-2: #25272a;
-  --surface-3: #2c2e32;
-  --border: #34363a;
-  --text: #f3f1ec;
-  --muted: #a3a5a9;
-  --faint: #71757b;
-  --primary: #ff6b35;
-  --primary-hover: #ff8456;
-  --primary-tint: #30221d;
-  --on-primary: #171513;
-  --positive: #4a9b8e;
-  --negative: #dc3b3b;
-  --radius: 6px;
-  --radius-lg: 10px;
+  /* This app's older names, mapped onto the hub-foundations tokens. */
+  --sidebar: var(--bg);
+  --surface-3: color-mix(in srgb, var(--surface-2) 80%, var(--text));
+  --faint: var(--muted);
+  --primary-tint: var(--accent-soft);
+  --ring: var(--outline);
 
-  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   --sidebar-w: 216px;
 
@@ -156,7 +145,7 @@ textarea {
   border-color: var(--border);
 }
 .btn.danger:hover:not(:disabled) {
-  background: rgba(220, 59, 59, 0.12);
+  background: color-mix(in srgb, var(--negative) 12%, transparent);
 }
 .btn-icon {
   gap: 6px;
@@ -171,7 +160,7 @@ input:focus,
 select:focus,
 textarea:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.18);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 18%, transparent);
 }
 
 .pill {
@@ -399,7 +388,7 @@ textarea:focus {
 
 /* Mobile/tablet chrome */
 .app-topbar {
-  background: rgba(16, 17, 19, 0.92);
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
 }
 .app-header {
   padding-bottom: 0.9rem;

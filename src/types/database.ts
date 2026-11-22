@@ -122,6 +122,28 @@ export interface Database {
         }
         Relationships: []
       }
+      // The Hub's per-user settings; global.appearance is the suite-wide theme.
+      user_settings: {
+        Row: {
+          user_id: string
+          scope: string
+          key: string
+          value: unknown
+        }
+        Insert: {
+          user_id: string
+          scope: string
+          key: string
+          value: unknown
+        }
+        Update: {
+          user_id?: string
+          scope?: string
+          key?: string
+          value?: unknown
+        }
+        Relationships: []
+      }
       user_app_access: {
         Row: {
           user_id: string

@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { syncThemeFromAccount } from './lib/theme'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { useAuth } from './auth/useAuth'
 import { useAppAccess } from './auth/useAppAccess'
@@ -17,6 +18,12 @@ const HUB_LOGIN_URL = 'https://hub.ksponline.co.uk/login?redirect=kravmaga.kspon
 export default function App() {
   const { session, loading } = useAuth()
   const access = useAppAccess(session?.user.id, 'krav-maga')
+
+  // Appearance (light / dark / auto) is one setting for the whole suite, saved by the Hub.
+  const userId = session?.user.id
+  useEffect(() => {
+    if (userId) void syncThemeFromAccount(userId)
+  }, [userId])
 
   useEffect(() => {
     if (!loading && !session) {
